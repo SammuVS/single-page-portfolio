@@ -2,7 +2,7 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-
+import profileImg from "./assets/SAMIULLA .jpg";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -141,21 +141,26 @@ export default function App() {
   return (
     <div className="min-h-screen font-sans selection:bg-black selection:text-white">
       {/* Navigation */}
-      <nav 
+      <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-white/80 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'
+          isScrolled
+            ? "bg-white/80 backdrop-blur-md py-4 shadow-sm"
+            : "bg-transparent py-6"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
-          <a href="#" className="text-2xl font-bold tracking-tighter hover:opacity-70 transition-opacity">
+          <a
+            href="#"
+            className="text-2xl font-bold tracking-tighter hover:opacity-70 transition-opacity"
+          >
             SAMIULLA
           </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex gap-8 items-center">
             {navLinks.map((link) => (
-              <a 
-                key={link.name} 
+              <a
+                key={link.name}
                 href={link.href}
                 className="text-sm font-medium hover:text-brand-secondary transition-colors"
               >
@@ -165,7 +170,7 @@ export default function App() {
           </div>
 
           {/* Mobile Menu Toggle */}
-          <button 
+          <button
             className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -176,15 +181,15 @@ export default function App() {
         {/* Mobile Nav Overlay */}
         <AnimatePresence>
           {isMenuOpen && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-full left-0 right-0 bg-white border-b border-gray-100 p-6 md:hidden flex flex-col gap-4 shadow-xl"
             >
               {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
+                <a
+                  key={link.name}
                   href={link.href}
                   className="text-lg font-medium"
                   onClick={() => setIsMenuOpen(false)}
@@ -210,20 +215,22 @@ export default function App() {
               Available for Projects
             </span>
             <h1 className="text-5xl md:text-7xl font-bold tracking-tighter leading-[0.9] mb-8 text-balance">
-              Hi, I'm Samiulla, a Full-Stack Developer & CS Student.
+              Hi, I'm Samiulla...
             </h1>
             <p className="text-xl text-gray-500 max-w-lg leading-relaxed mb-10">
-              I specialize in building scalable, high-performance applications with Java and Spring Boot, focusing on clean architecture and seamless user experiences.
+              I specialize in building scalable, high-performance applications
+              with Java and Spring Boot, focusing on clean architecture and
+              seamless user experiences.
             </p>
             <div className="flex flex-wrap gap-4">
-              <a 
-                href="#work" 
+              <a
+                href="#work"
                 className="px-8 py-4 bg-black text-white rounded-full font-medium hover:bg-gray-800 transition-all hover:scale-105 active:scale-95"
               >
                 View My Work
               </a>
-              <a 
-                href="#contact" 
+              <a
+                href="#contact"
                 className="px-8 py-4 border border-gray-200 rounded-full font-medium hover:bg-gray-50 transition-all"
               >
                 Get in Touch
@@ -240,15 +247,13 @@ export default function App() {
           >
             <div className="relative w-64 h-64 md:w-96 md:h-96">
               <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-gray-100 to-gray-200 animate-pulse" />
-              <img 
-                src="https://picsum.photos/seed/samiulla/800/800"
+              <img
+                src={profileImg}
                 alt="Samiulla"
                 className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
                 referrerPolicy="no-referrer"
               />
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white rounded-full shadow-lg flex items-center justify-center animate-bounce">
-                <Code2 className="text-black" size={32} />
-              </div>
+              
             </div>
           </motion.div>
         </div>
@@ -259,8 +264,13 @@ export default function App() {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">Selected Work</h2>
-              <p className="text-gray-500 max-w-md">A collection of projects that demonstrate my technical expertise and problem-solving skills.</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">
+                Selected Work
+              </h2>
+              <p className="text-gray-500 max-w-md">
+                A collection of projects that demonstrate my technical expertise
+                and problem-solving skills.
+              </p>
             </div>
             <div className="flex gap-2">
               <div className="w-12 h-1 bg-black rounded-full" />
@@ -281,16 +291,32 @@ export default function App() {
               >
                 <div className="mb-6 flex justify-between items-start">
                   <div className="p-3 bg-gray-100 rounded-2xl group-hover:bg-black group-hover:text-white transition-colors">
-                    {index === 0 ? <Cpu size={24} /> : index === 1 ? <Terminal size={24} /> : <Code2 size={24} />}
+                    {index === 0 ? (
+                      <Cpu size={24} />
+                    ) : index === 1 ? (
+                      <Terminal size={24} />
+                    ) : (
+                      <Code2 size={24} />
+                    )}
                   </div>
-                  <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-black transition-colors">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-400 hover:text-black transition-colors"
+                  >
                     <Github size={20} />
                   </a>
                 </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform">{project.title}</h3>
+                <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform">
+                  {project.title}
+                </h3>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map(tag => (
-                    <span key={tag} className="text-[10px] font-bold uppercase tracking-wider text-gray-400 border border-gray-100 px-2 py-0.5 rounded-md">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] font-bold uppercase tracking-wider text-gray-400 border border-gray-100 px-2 py-0.5 rounded-md"
+                    >
                       {tag}
                     </span>
                   ))}
@@ -298,7 +324,7 @@ export default function App() {
                 <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">
                   {project.description}
                 </p>
-                <a 
+                <a
                   href={project.github}
                   className="inline-flex items-center gap-2 text-sm font-bold group-hover:gap-3 transition-all"
                 >
@@ -316,7 +342,8 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
             <div>
               <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-none">
-                Let's build <br /> something <br /> <span className="text-gray-500">extraordinary.</span>
+                Let's build <br /> something <br />{" "}
+                <span className="text-gray-500">extraordinary.</span>
               </h2>
               <div className="space-y-6">
                 <div className="flex items-center gap-4">
@@ -324,44 +351,48 @@ export default function App() {
                     <Mail size={20} />
                   </div>
                   <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">Email Me</p>
+                    <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">
+                      Email Me
+                    </p>
                     <p className="text-lg">sammuvs31@gmail.com</p>
                   </div>
                 </div>
-                
+
                 <div className="pt-4">
-                  <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mb-4">Follow Me</p>
+                  <p className="text-xs text-gray-500 uppercase tracking-widest font-bold mb-4">
+                    Follow Me
+                  </p>
                   <div className="flex flex-wrap gap-4">
-                    <a 
-                      href="https://github.com/SammuVS" 
-                      target="_blank" 
+                    <a
+                      href="https://github.com/SammuVS"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-full border border-gray-800 flex items-center justify-center hover:bg-white hover:text-black transition-all"
                       title="GitHub"
                     >
                       <Github size={20} />
                     </a>
-                    <a 
-                      href="https://www.linkedin.com/in/sammu-vs" 
-                      target="_blank" 
+                    <a
+                      href="https://www.linkedin.com/in/sammu-vs"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-full border border-gray-800 flex items-center justify-center hover:bg-white hover:text-black transition-all"
                       title="LinkedIn"
                     >
                       <Linkedin size={20} />
                     </a>
-                    <a 
-                      href="https://x.com/SAMMU_VS" 
-                      target="_blank" 
+                    <a
+                      href="https://x.com/SAMMU_VS"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-full border border-gray-800 flex items-center justify-center hover:bg-white hover:text-black transition-all"
                       title="X (Twitter)"
                     >
                       <Twitter size={20} />
                     </a>
-                    <a 
-                      href="https://www.facebook.com/profile.php?id=61578711275375" 
-                      target="_blank" 
+                    <a
+                      href="https://www.facebook.com/profile.php?id=61578711275375"
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="w-12 h-12 rounded-full border border-gray-800 flex items-center justify-center hover:bg-white hover:text-black transition-all"
                       title="Facebook"
@@ -379,8 +410,8 @@ export default function App() {
               viewport={{ once: true }}
               className="bg-zinc-900/50 p-8 md:p-12 rounded-[2rem] border border-zinc-800"
             >
-              {submitStatus === 'success' ? (
-                <motion.div 
+              {submitStatus === "success" ? (
+                <motion.div
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="text-center py-12"
@@ -389,9 +420,12 @@ export default function App() {
                     <Mail className="text-black" size={32} />
                   </div>
                   <h3 className="text-2xl font-bold mb-4">Message Sent!</h3>
-                  <p className="text-zinc-400 mb-8">Thank you for reaching out. I'll get back to you as soon as possible.</p>
-                  <button 
-                    onClick={() => setSubmitStatus('idle')}
+                  <p className="text-zinc-400 mb-8">
+                    Thank you for reaching out. I'll get back to you as soon as
+                    possible.
+                  </p>
+                  <button
+                    onClick={() => setSubmitStatus("idle")}
                     className="px-8 py-3 border border-zinc-800 rounded-xl font-bold hover:bg-zinc-800 transition-all"
                   >
                     Send Another Message
@@ -401,55 +435,81 @@ export default function App() {
                 <form className="space-y-8" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Name</label>
-                      <input 
-                        type="text" 
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                        Name
+                      </label>
+                      <input
+                        type="text"
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
                         placeholder="Your Name"
                         className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors placeholder:text-zinc-700 ${
-                          errors.name ? 'border-red-500' : 'border-zinc-800 focus:border-white'
+                          errors.name
+                            ? "border-red-500"
+                            : "border-zinc-800 focus:border-white"
                         }`}
                       />
-                      {errors.name && <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">{errors.name}</p>}
+                      {errors.name && (
+                        <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">
+                          {errors.name}
+                        </p>
+                      )}
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Email</label>
-                      <input 
-                        type="email" 
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                        Email
+                      </label>
+                      <input
+                        type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
                         placeholder="Your Email"
                         className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors placeholder:text-zinc-700 ${
-                          errors.email ? 'border-red-500' : 'border-zinc-800 focus:border-white'
+                          errors.email
+                            ? "border-red-500"
+                            : "border-zinc-800 focus:border-white"
                         }`}
                       />
-                      {errors.email && <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">{errors.email}</p>}
+                      {errors.email && (
+                        <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">
+                          {errors.email}
+                        </p>
+                      )}
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Message</label>
-                    <textarea 
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-zinc-500">
+                      Message
+                    </label>
+                    <textarea
                       name="message"
                       value={formData.message}
                       onChange={handleInputChange}
                       rows={4}
                       placeholder="Tell me about your project..."
                       className={`w-full bg-transparent border-b py-3 focus:outline-none transition-colors placeholder:text-zinc-700 resize-none ${
-                        errors.message ? 'border-red-500' : 'border-zinc-800 focus:border-white'
+                        errors.message
+                          ? "border-red-500"
+                          : "border-zinc-800 focus:border-white"
                       }`}
                     />
-                    {errors.message && <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">{errors.message}</p>}
+                    {errors.message && (
+                      <p className="text-red-500 text-[10px] font-bold uppercase tracking-widest mt-1">
+                        {errors.message}
+                      </p>
+                    )}
                   </div>
-                  
-                  {submitStatus === 'error' && (
-                    <p className="text-red-500 text-sm font-medium">Something went wrong. Please try again later.</p>
+
+                  {submitStatus === "error" && (
+                    <p className="text-red-500 text-sm font-medium">
+                      Something went wrong. Please try again later.
+                    </p>
                   )}
 
                   <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                    <button 
+                    <button
                       type="submit"
                       disabled={isSubmitting}
                       className="flex-1 bg-white text-black py-4 rounded-xl font-bold hover:bg-zinc-200 transition-all active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
@@ -459,9 +519,11 @@ export default function App() {
                           <div className="w-5 h-5 border-2 border-black/20 border-t-black rounded-full animate-spin" />
                           SENDING...
                         </>
-                      ) : 'SEND MESSAGE'}
+                      ) : (
+                        "SEND MESSAGE"
+                      )}
                     </button>
-                    <button 
+                    <button
                       type="button"
                       onClick={handleReset}
                       className="px-8 py-4 border border-zinc-800 rounded-xl font-bold hover:bg-zinc-800 transition-all"
@@ -473,12 +535,18 @@ export default function App() {
               )}
             </motion.div>
           </div>
-          
+
           <div className="mt-32 pt-12 border-t border-zinc-900 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-zinc-500 text-sm">© 2026 Samiulla. All rights reserved.</p>
+            <p className="text-zinc-500 text-sm">
+              © 2026 Samiulla. All rights reserved.
+            </p>
             <div className="flex gap-8 text-sm font-medium text-zinc-400">
-              <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+              <a href="#" className="hover:text-white transition-colors">
+                Privacy Policy
+              </a>
+              <a href="#" className="hover:text-white transition-colors">
+                Terms of Service
+              </a>
             </div>
           </div>
         </div>
