@@ -2,7 +2,7 @@
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
-import profileImg from "./assets/SAMIULLA .jpg";
+import profileImg from "./assets/samiulla.png";
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
@@ -118,24 +118,26 @@ export default function App() {
   ];
 
   const projects = [
-    {
-      title: "Smart City Traffic Simulator",
-      tags: ["Spring Boot", "Java", "React"],
-      description: "A real-time traffic simulation system using multi-agent modeling to optimize urban traffic flow and reduce congestion.",
-      github: "https://github.com/SammuVS"
-    },
+    // {
+    //   title: "Smart City Traffic Simulator",
+    //   tags: ["Spring Boot", "Java", "React"],
+    //   description: "A real-time traffic simulation system using multi-agent modeling to optimize urban traffic flow and reduce congestion.",
+    //   github: "https://github.com/SammuVS"
+    // },
     {
       title: "AU Lost and Found",
       tags: ["React", "Firebase", "Tailwind"],
-      description: "A community-driven platform for students to report and recover lost items within the university campus.",
-      github: "https://github.com/SammuVS"
+      description:
+        "A community-driven platform for students to report and recover lost items within the university campus.",
+      github: "https://github.com/SammuVS/AU-Lost-Found",
     },
     {
-      title: "IT Helpdesk Automation",
-      tags: ["Python", "ML", "FastAPI"],
-      description: "An automated ticketing system that uses machine learning to categorize and prioritize IT support requests.",
-      github: "https://github.com/SammuVS"
-    }
+      title: "My First Portfolio",
+      tags: ["HTML5", "CSS3", "Flexbox"],
+      description:
+        "An automated ticketing system that uses machine learning to categorize and prioritize IT support requests.",
+      github: "https://github.com/SammuVS/my-first-portfolio",
+    },
   ];
 
   return (
@@ -205,11 +207,41 @@ export default function App() {
       {/* Hero Section */}
       <section id="intro" className="pt-32 pb-20 md:pt-48 md:pb-32 px-6">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* IMAGE FIRST ON MOBILE, RIGHT SIDE ON DESKTOP */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="order-first md:order-last relative flex justify-center md:justify-end"
+          >
+            {/* <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96">
+              <div className="absolute inset-0 rounded-3xl md:rounded-full bg-gradient-to-tr from-gray-100 to-gray-200 animate-pulse" />
+              <img
+                src={profileImg}
+                alt="Samiulla"
+                className="relative w-full h-full object-cover object-center rounded-3xl md:rounded-full border-4 border-white shadow-2xl"
+                referrerPolicy="no-referrer"
+              />
+            </div> */}
+            <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-gray-100 to-gray-200 animate-pulse" />
+              <img
+                src={profileImg}
+                alt="Samiulla"
+                className="relative w-full h-full object-cover object-center rounded-full border-4 border-white shadow-2xl"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+          </motion.div>
+
+          {/* TEXT SECOND ON MOBILE, LEFT SIDE ON DESKTOP */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
+            className="order-last md:order-first"
           >
             <span className="inline-block px-3 py-1 bg-gray-100 text-[10px] font-bold tracking-widest uppercase rounded-full mb-6">
               Available for Projects
@@ -218,9 +250,11 @@ export default function App() {
               Hi, I'm Samiulla...
             </h1>
             <p className="text-xl text-gray-500 max-w-lg leading-relaxed mb-10">
-              I specialize in building scalable, high-performance applications
-              with Java and Spring Boot, focusing on clean architecture and
-              seamless user experiences.
+              Frontend Developer skilled in HTML, CSS, and Bootstrap, with
+              growing expertise in JavaScript and Java. I design and build
+              modern, high-conversion single-page portfolio websites that help
+              individuals stand out online. Leveraging AI-driven workflows to
+              deliver fast, responsive, and clean designs.
             </p>
             <div className="flex flex-wrap gap-4">
               <a
@@ -235,25 +269,6 @@ export default function App() {
               >
                 Get in Touch
               </a>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative flex justify-center md:justify-end"
-          >
-            <div className="relative w-64 h-64 md:w-96 md:h-96">
-              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-gray-100 to-gray-200 animate-pulse" />
-              <img
-                src={profileImg}
-                alt="Samiulla"
-                className="relative w-full h-full object-cover rounded-full border-4 border-white shadow-2xl"
-                referrerPolicy="no-referrer"
-              />
-              
             </div>
           </motion.div>
         </div>
@@ -540,14 +555,14 @@ export default function App() {
             <p className="text-zinc-500 text-sm">
               © 2026 Samiulla. All rights reserved.
             </p>
-            <div className="flex gap-8 text-sm font-medium text-zinc-400">
+            {/* <div className="flex gap-8 text-sm font-medium text-zinc-400">
               <a href="#" className="hover:text-white transition-colors">
                 Privacy Policy
               </a>
               <a href="#" className="hover:text-white transition-colors">
                 Terms of Service
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
