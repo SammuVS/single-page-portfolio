@@ -3,66 +3,72 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 import profileImg from "./assets/samiulla.png";
-import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Github, 
-  Mail, 
-  ChevronUp, 
-  ExternalLink, 
-  Code2, 
-  Cpu, 
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  Github,
+  Mail,
+  ChevronUp,
+  ExternalLink,
+  Code2,
+  Cpu,
   Terminal,
   Menu,
   X,
   Linkedin,
   Twitter,
-  Facebook
-} from 'lucide-react';
+  Facebook,
+} from "lucide-react";
 
 export default function App() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
-  
+
   // Form State
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       setShowBackToTop(window.scrollY > 500);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const validateForm = () => {
     const newErrors: { [key: string]: string } = {};
-    
+
     if (!formData.name.trim()) {
-      newErrors.name = 'Name is required';
+      newErrors.name = "Name is required";
     } else if (formData.name.trim().length < 2) {
-      newErrors.name = 'Name must be at least 2 characters';
+      newErrors.name = "Name must be at least 2 characters";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = "Email is required";
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address';
+      newErrors.email = "Please enter a valid email address";
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = 'Message is required';
+      newErrors.message = "Message is required";
     } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message must be at least 10 characters';
+      newErrors.message = "Message must be at least 10 characters";
     }
 
     setErrors(newErrors);
@@ -71,33 +77,42 @@ export default function App() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
 
     setIsSubmitting(true);
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
 
     try {
-      // Simulating a real API call to send the email
-      // In a real production app, you would use a service like Formspree, EmailJS, 
-      // or a custom backend endpoint to send to sammuvs31@gmail.com
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to send");
+      }
+
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      setSubmitStatus('error');
+      setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => {
+      setErrors((prev) => {
         const newErrors = { ...prev };
         delete newErrors[name];
         return newErrors;
@@ -106,15 +121,15 @@ export default function App() {
   };
 
   const handleReset = () => {
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: "", email: "", message: "" });
     setErrors({});
-    setSubmitStatus('idle');
+    setSubmitStatus("idle");
   };
 
   const navLinks = [
-    { name: 'Intro', href: '#intro' },
-    { name: 'Work', href: '#work' },
-    { name: 'Contact', href: '#contact' },
+    { name: "Intro", href: "#intro" },
+    { name: "Work", href: "#work" },
+    { name: "Contact", href: "#contact" },
   ];
 
   const projects = [
